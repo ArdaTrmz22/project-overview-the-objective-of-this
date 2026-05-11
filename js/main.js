@@ -2,15 +2,30 @@
 const darkModeToggle = document.getElementById('darkModeToggle');
 const body = document.body;
 
+function updateThemeIcon() {
+    if (!darkModeToggle) return;
+    const icon = darkModeToggle.querySelector('i');
+    if (body.classList.contains('dark-mode')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+    }
+}
+
 // LocalStorage'dan tema tercihini kontrol et
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
 }
+updateThemeIcon(); // İlk yüklemede ikonu ayarla
 
 // Butona tıklandığında temayı değiştir
 if (darkModeToggle) {
     darkModeToggle.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
+        updateThemeIcon(); // İkonu güncelle
+        
         // Tercihi kaydet
         if (body.classList.contains('dark-mode')) {
             localStorage.setItem('theme', 'dark');
