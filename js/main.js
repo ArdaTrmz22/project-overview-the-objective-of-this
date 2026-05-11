@@ -67,3 +67,54 @@ if (contactForm) {
         formFeedback.style.color = 'green';
     });
 }
+
+// =========================================
+// Projeleri AJAX (Fetch API) ile Yükleme
+// =========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const projectList = document.getElementById('project-list');
+    
+    if (projectList) {
+        fetchProjects();
+    }
+
+    async function fetchProjects() {
+        try {
+            const response = await fetch('get_projects.php');
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                const projects = result.data;
+                
+                if (projects.length === 0) {
+                    projectList.innerHTML = '<p class="text-muted" style="text-align:center; grid-column: 1 / -1;">Henüz proje eklenmemiş.</p>';
+                    return;
+                }
+
+                // Mevcut içeriği temizle
+                projectList.innerHTML = '';
+
+                // Projeleri döngü ile karta çevirip DOM'a ekle
+                projects.forEach(project => {
+                    const card = document.createElement('div');
+                    card.className = 'glass-card project-card';
+                    
+                    const imgUrl = project.image_url ? project.image_url : 'https://via.placeholder.com/400x250?text=Proje+Gorseli';
+                    
+                    card.innerHTML = `
+                        <div style="height: 200px; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem;">
+                            <img src="${imgUrl}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3 style="margin-bottom: 0.5rem;">${project.title}</h3>
+                        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">${project.description}</p>
+                    `;
+                    projectList.appendChild(card);
+                });
+            } else {
+                throw new Error(result.message);
+            }
+        } catch (error) {
+            projectList.innerHTML = `<p style="color: red; text-align:center; grid-column: 1 / -1;">Projeler yüklenemedi: ${error.message}</p>`;
+        }
+    }
+});

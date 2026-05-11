@@ -14,7 +14,7 @@
     <header>
         <nav class="glass-nav">
             <div class="nav-brand">
-                <a href="index.php">Arda<span class="dot">.</span></a>
+                <a href="index.php">Arda</a>
             </div>
             
             <ul class="nav-links">
