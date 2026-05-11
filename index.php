@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benim Portföyüm</title>
-</head>
-<body>
+<?php include 'includes/header.php'; ?>
+
+<section id="home">
     <h1>Portföy Sitesine Hoş Geldiniz</h1>
-</body>
-</html>
+    <p>Bu alan, dinamik web projelerimi sergilemek için tasarlandı.</p>
+</section>
+
+<?php include 'includes/footer.php'; ?>
