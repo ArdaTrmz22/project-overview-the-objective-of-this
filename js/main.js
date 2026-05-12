@@ -35,37 +35,71 @@ if (darkModeToggle) {
     });
 }
 
-// Form Validasyonu (Gönderilmeden Önce İstemci Tarafı Kontrolü)
+// Form Validasyonu ve AJAX Gönderimi
 const contactForm = document.getElementById('contact-form');
 const formFeedback = document.getElementById('form-feedback');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const message = document.getElementById('message').value.trim();
+    contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault(); // Sayfanın yenilenmesini engelle (AJAX için zorunlu)
+
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
         
-        // Basit boşluk kontrolü
+        // 1. İstemci Tarafı (Client-Side) Validasyon
         if (!name || !email || !message) {
-            e.preventDefault(); // Formun gönderilmesini engelle
-            formFeedback.textContent = 'Lütfen tüm alanları doldurun.';
-            formFeedback.style.color = 'red';
+            showFeedback('Lütfen tüm alanları doldurun.', 'error');
             return;
         }
 
-        // Basit E-posta format kontrolü
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            e.preventDefault();
-            formFeedback.textContent = 'Lütfen geçerli bir e-posta adresi girin.';
-            formFeedback.style.color = 'red';
+            showFeedback('Lütfen geçerli bir e-posta adresi girin.', 'error');
             return;
         }
 
-        // Eğer hata yoksa (Burada PHP'ye post edilecek, şimdilik AJAX kısmı eklenene kadar submit olmasına izin veriyoruz)
-        formFeedback.textContent = 'Form doğrulaması başarılı, gönderiliyor...';
-        formFeedback.style.color = 'green';
+        // 2. Sunucuya Gönderim (AJAX Fetch API)
+        try {
+            // Butonu gönderiliyor durumuna al
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Gönderiliyor...';
+            submitBtn.disabled = true;
+
+            const response = await fetch('process_contact.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, email, message })
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                showFeedback(result.message, 'success');
+                contactForm.reset(); // Formu temizle
+            } else {
+                showFeedback(result.message, 'error');
+            }
+        } catch (error) {
+            showFeedback('Bağlantı hatası: Lütfen daha sonra tekrar deneyin.', 'error');
+        } finally {
+            // Butonu eski haline getir
+            submitBtn.innerHTML = '<i class="fa-regular fa-paper-plane"></i> Mesajı Gönder';
+            submitBtn.disabled = false;
+        }
     });
+}
+
+function showFeedback(message, type) {
+    formFeedback.textContent = message;
+    formFeedback.style.color = type === 'error' ? '#f43f5e' : '#10b981'; // Kırmızı (Hata) veya Yeşil (Başarılı)
 }
 
 // =========================================
