@@ -1,4 +1,37 @@
-<?php include 'includes/header.php'; ?>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Portföy</title>
+    <!-- Modern Yazı Tipleri -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- İkonlar için FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="glass-nav">
+            <div class="nav-brand">
+                <a href="index.html">Arda</a>
+            </div>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="#about">Hakkımda</a></li>
+                <li><a href="#portfolio">Projeler</a></li>
+                <li><a href="#contact">İletişim</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="darkModeToggle" class="btn-icon" aria-label="Temayı Değiştir">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+    <main>
 
 <!-- Arka Plan Dekoratif Şekilleri -->
 <div class="shape shape-1"></div>
@@ -18,9 +51,9 @@
             </div>
             
             <div class="social-icons">
-                <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
-                <a href="#" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://github.com/ArdaTrmz22" target="_blank" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/arda-türemez-198a533b3/" target="_blank" class="social-icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://x.com/ardatrmz" target="_blank" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
             </div>
         </div>
     </div>
@@ -115,7 +148,7 @@
             <h3>İletişim Bilgileri</h3>
             <p>Bana aşağıdaki yollardan ulaşabilirsiniz:</p>
             <ul class="info-list">
-                <li><i class="fa-solid fa-envelope"></i> hello@portfoyum.com</li>
+                <li><i class="fa-solid fa-envelope"></i> ardatrmz@gmail.com</li>
                 <li><i class="fa-solid fa-location-dot"></i> İstanbul, Türkiye</li>
             </ul>
         </div>
@@ -127,14 +160,14 @@
                         <label for="name">Adınız</label>
                         <div class="input-wrapper">
                             <i class="fa-regular fa-user"></i>
-                            <input type="text" id="name" name="name" placeholder="John Doe" required>
+                            <input type="text" id="name" name="name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="email">E-posta</label>
                         <div class="input-wrapper">
                             <i class="fa-regular fa-envelope"></i>
-                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
                     </div>
                 </div>
@@ -142,7 +175,7 @@
                     <label for="message">Mesajınız</label>
                     <div class="input-wrapper textarea-wrapper">
                         <i class="fa-regular fa-comment-dots"></i>
-                        <textarea id="message" name="message" rows="4" placeholder="Projenizden bahsedin..." required></textarea>
+                        <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-glow btn-full"><i class="fa-regular fa-paper-plane"></i> Mesajı Gönder</button>
@@ -152,4 +185,10 @@
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+    </main>
+    <footer>
+        <p>&copy; 2026 Benim Portföyüm. Tüm hakları saklıdır.</p>
+    </footer>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -71,7 +71,7 @@ if (contactForm) {
             submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Gönderiliyor...';
             submitBtn.disabled = true;
 
-            const response = await fetch('process_contact.php', {
+            const response = await fetch('http://localhost/portfolio/project-overview-the-objective-of-this/api/process_contact.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchProjects() {
         try {
-            const response = await fetch('get_projects.php');
+            const response = await fetch('http://localhost/portfolio/project-overview-the-objective-of-this/api/get_projects.php');
             const result = await response.json();
 
             if (result.status === 'success') {

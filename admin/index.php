@@ -54,7 +54,7 @@ if (!$isLoggedIn) {
     <a href="index.php" class="active"><i class="fa-solid fa-gauge"></i> Dashboard</a>
     <a href="projects.php"><i class="fa-solid fa-briefcase"></i> Projeler</a>
     <a href="messages.php"><i class="fa-solid fa-envelope"></i> Mesajlar</a>
-    <a href="../index.php" target="_blank"><i class="fa-solid fa-globe"></i> Siteyi Gör</a>
+    <a href="../index.html" target="_blank"><i class="fa-solid fa-globe"></i> Siteyi Gör</a>
     <a href="logout.php" class="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Çıkış Yap</a>
 </div>
 
